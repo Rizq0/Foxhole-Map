@@ -15,9 +15,7 @@
     (click)="themeService.toggle()"
     icon="pi pi-refresh"
   >
-    {{
-      themeService.vibrancy() === "vibrant" ? "Drowned Theme" : "Vibrant Theme"
-    }}
+    {{ themeService.vibrancy() === "vibrant" ? "Drowned" : "Vibrant" }}
   </button>
 
   @if (isActiveWar()) {
