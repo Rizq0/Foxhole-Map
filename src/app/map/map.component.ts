@@ -150,7 +150,13 @@ export class MapComponent implements AfterViewInit {
       layers: [baseLayer],
       controls: [this.mousePositionControl, new LayerSwitcher()],
       interactions: [
+        /* this is for left click panning
         new DragPan({
+          kinetic: new Kinetic(-0.005, 0.05, 100),
+        }),
+        */
+        new DragPan({
+          condition: (event) => event.originalEvent.button === 1,
           kinetic: new Kinetic(-0.005, 0.05, 100),
         }),
         new MouseWheelZoom(),
