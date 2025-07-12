@@ -38,10 +38,11 @@ import XYZ from 'ol/source/XYZ';
 import LayerGroup from 'ol/layer/Group';
 import VectorLayer from 'ol/layer/Vector';
 import { ThemeService } from '../../services/theme.service';
+import { MapToolbarComponent } from '../map-toolbar/map-toolbar.component';
 
 @Component({
   selector: 'app-map',
-  imports: [MapInfoComponent],
+  imports: [MapInfoComponent, MapToolbarComponent],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })

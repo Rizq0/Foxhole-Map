@@ -1,0 +1,21 @@
+<div class="absolute bottom-4 left-4 z-20">
+  <div
+    class="bg-zinc-900 bg-opacity-90 rounded-sm px-2 py-2 flex flex-row gap-2"
+  >
+    <p-select
+      class="capitalize"
+      size="large"
+      [options]="selectableShards"
+      [(ngModel)]="shard"
+      (onChange)="saveSelectedShard($event)"
+    />
+    <button
+      pButton
+      type="button"
+      (click)="themeService.toggle()"
+      [label]="themeService.vibrancy() === 'vibrant' ? 'Drowned' : 'Vibrant'"
+      icon=""
+      class=""
+    ></button>
+  </div>
+</div>

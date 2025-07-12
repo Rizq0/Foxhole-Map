@@ -1,37 +1,18 @@
-import {
-  Component,
-  computed,
-  inject,
-  input,
-  Input,
-  model,
-  Signal,
-} from '@angular/core';
-import { Select, SelectChangeEvent } from 'primeng/select';
-import { ButtonModule } from 'primeng/button';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { Shard, WarApiService } from '../../services/war-api.service';
 import { SettingsService } from '../../services/settings.service';
-import { ThemeService } from '../../services/theme.service';
-import { FormsModule } from '@angular/forms';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-map-info',
-  imports: [Select, FormsModule, ButtonModule],
+  imports: [],
   templateUrl: './map-info.component.html',
   styleUrl: './map-info.component.css',
 })
 export class MapInfoComponent {
   private readonly settingsService = inject(SettingsService);
   private readonly warApiService = inject(WarApiService);
-  public readonly themeService = inject(ThemeService);
-
-  public selectableShards: string[] = [
-    WarApiService.ABLE_SHARD,
-    WarApiService.BAKER_SHARD,
-    WarApiService.CHARLIE_SHARD,
-  ];
 
   shard: Signal<Shard> = this.settingsService.selectedShard;
   warData = toSignal(
@@ -58,9 +39,5 @@ export class MapInfoComponent {
       return `${minutes} minutes`;
     }
     return `${seconds} seconds`;
-  }
-
-  saveSelectedShard($event: SelectChangeEvent) {
-    this.settingsService.saveSelectedShard($event.value as Shard);
   }
 }
