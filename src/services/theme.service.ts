@@ -6,7 +6,7 @@ export type Theme = 'vibrant' | 'drowned';
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly _theme = signal<Theme>(this.getStoredTheme() || 'drowned');
+  private _theme: ReturnType<typeof signal<Theme>>;
 
   get vibrancy() {
     return this._theme.asReadonly();
@@ -14,10 +14,8 @@ export class ThemeService {
 
   constructor() {
     const storedTheme = this.getStoredTheme();
-    if (storedTheme) {
-      this._theme.set(storedTheme);
-    } else {
-      this._theme.set('drowned');
+    this._theme = signal<Theme>(storedTheme || 'drowned');
+    if (!storedTheme) {
       this.setStoredTheme();
     }
   }
